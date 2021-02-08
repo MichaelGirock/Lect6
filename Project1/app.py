@@ -2,11 +2,23 @@ import requests
 import os
 from dotenv import load_dotenv, find_dotenv
 from flask import Flask, render_template 
+import random
 
 app = Flask(__name__)
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
-BASE_URL = 'https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4/top-tracks'
+
+random_num =random.randint(1,3)
+print(random_num)
+if random_num==1:
+    BASE_URL = 'https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4/top-tracks' #DRAKE
+    tracknum =1 #track number
+elif random_num==2:
+    BASE_URL = 'https://api.spotify.com/v1/artists/04gDigrS5kc9YWfZHwBETP/top-tracks' #MAROON 5
+    tracknum =1 #track number
+else:
+    BASE_URL = 'https://api.spotify.com/v1/artists/6oMuImdp5ZcFhWP0ESe6mG/top-tracks' #MIGOS
+    tracknum =1 #track number
 
 load_dotenv(find_dotenv())
 
@@ -33,21 +45,19 @@ r = requests.get(BASE_URL,
 output = r.json()
 
 
-print(output['tracks'][0]['album']['name'])
-print(output['tracks'][0]['artists'][0]['name'])
-print(output['tracks'][0]['album']['images'][0]['url'])
+print(output['tracks'][tracknum]['name'])
+print(output['tracks'][tracknum]['artists'][0]['name'])
+print(output['tracks'][tracknum]['album']['images'][0]['url'])
+print(output['tracks'][tracknum]['preview_url'])
 
-song =(output['tracks'][0]['album']['name'])
-artist =(output['tracks'][0]['artists'][0]['name'])
-cover = (output['tracks'][0]['album']['images'][0]['url'])
-
+song =(output['tracks'][tracknum]['name'])
+artist =(output['tracks'][tracknum]['artists'][0]['name'])
+cover = (output['tracks'][tracknum]['album']['images'][0]['url'])
+preview=(output['tracks'][tracknum]['preview_url'])
 
 # HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][] HTML BELOW [][][][][]
 
 
-
-
-#blah =["https://i.scdn.co/image/ab67616d0000b27352c75ed37313b889447011ef"]
 
 @app.route('/')
 def spotifyAPI():
@@ -60,7 +70,8 @@ def spotifyAPI():
         artistlen=len(artist),
         artist=artist,
         coverlen=len(cover),
-        cover=cover)
+        cover=cover,
+        preview=preview)
 
 app.run(
     port=int(os.getenv('PORT', 8080)),
