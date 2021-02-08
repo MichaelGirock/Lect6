@@ -24,11 +24,13 @@ headers = {
 
 r = requests.get(BASE_URL, 
                 headers=headers, 
-                params={'market':'US' , 'song': 'name', 'limit': 10})
+                params={'market':'US'})
 
 
 output = r.json()
 
 
-for i in range (0,10):
-    print(output['tracks'][i]['album']['name'])
+print(output['tracks'][0]['album']['name'])
+print(output['tracks'][0]['artists'][0]['name'])
+print(output['tracks'][0]['album']['images'][0]['url'])
+
