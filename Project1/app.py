@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
-BASE_URL = 'https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4'
+BASE_URL = 'https://api.spotify.com/v1/artists/3TVXtAsR1Inumwj472S9r4/top-tracks'
 
 load_dotenv(find_dotenv())
 
@@ -24,11 +24,11 @@ headers = {
 
 r = requests.get(BASE_URL, 
                 headers=headers, 
-                params={'include_groups': 'album', 'limit': 10})
+                params={'market':'US' , 'song': 'name', 'limit': 10})
 
 
 output = r.json()
 
 
 for i in range (0,10):
-    print(output['albums']['items'][i]['name'])
+    print(output['tracks'][i]['album']['name'])
