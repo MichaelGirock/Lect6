@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+    font-size: 33px;
+    
+}
+
+.song_name{
+    font-family: Georgia, serif;
+    border: double;
+}
+
+.artist{
+  position: absolute;
+  left: 50px;
+  top: 55px;
+    font-size: 20px;
+}
+a{
+  color: hotpink;
+}

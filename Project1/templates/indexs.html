@@ -2,19 +2,19 @@
 <html>
     
     <head>
-        <link rel="stylesheet" href={{ url_for( 'static', filename='styles.css' ) }} />
+        <link rel="stylesheet" href={{ url_for( 'static', filename='stylesssss.css' ) }} />
     </head>
     <body>
         <ol> 
-        <p> {{song}} </p> 
-        <p> {{artist}} </p>
+        <p class="song_name"> {{song}} </p> 
+        <p class="artist"> {{artist}} </p>
           
           
         <img src ={{cover}} />    
         <audio controls>
           <source src={{preview}} />
         </audio>
-          
+          <p><b><a href={{geniuslink}} target="_blank">Lyrics</a></b></p>
         </ol> 
     </body>
 </html>
